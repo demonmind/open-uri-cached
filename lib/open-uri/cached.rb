@@ -104,7 +104,7 @@ module OpenURI
       #   (optional): the maximum age at which the cached value is still acceptable
       # @return
       #   Returns 1 if a cached value was invalidated, false otherwise
-      def invalidate(key, time = Time.now)
+      def invalidate(key, time = Time.now - 24.hours)
         filename = filename_from_url(key)
         File.delete(filename) if File.stat(filename).mtime < time
       rescue Errno::ENOENT
